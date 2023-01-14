@@ -10,7 +10,9 @@ done
 
 for flag in "${flag_array[@]}"
 do
-    echo "Searching for flag: $flag"
-    man $command | sed -n "/$flag/p" | tail -5
+    if [ $flag != "--" ]; then
+        echo "Searching for flag:       $flag"
+        man $command | sed -n "/       $flag/,+3p"
+    fi
 done
 
